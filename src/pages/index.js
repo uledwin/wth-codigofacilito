@@ -9,9 +9,15 @@ const Index = ({ pets }) => {
 
   return (
     <>
+      <div>
+      {/* Insertar una imagen en la parte superior */}
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Perros-Bonitos-Acostados.jpg" alt="Mi Perro" /> 
+      <br/>
 
       {/* TODO: Display Hours component */}
        <Hours/>
+      </div>
+
       {/* Create a card for each pet */}
       {pets.map((pet) => (
         <div key={pet._id}>
@@ -21,7 +27,6 @@ const Index = ({ pets }) => {
             <div className="main-content">
               <p className="pet-name">{pet.name}</p>
               <p className="owner">Owner: {pet.owner_name}</p>
-
               {/* Extra Pet Info: Likes and Dislikes */}
               <div className="likes info">
                 <p className="label">Likes</p>
