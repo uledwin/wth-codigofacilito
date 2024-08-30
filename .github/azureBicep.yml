@@ -1,6 +1,7 @@
 name: Deployment-AR
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
   # push:
   #   branches:
   #     - main
@@ -29,13 +30,11 @@ jobs:
           az account show
 
     - name: Bicep Validate
-      uses: Azure/cli@v1
-      with:
-        inlineScript: |
-          az deployment sub validate \
-            --name validate-${{ github.run_id }} \
-            --template-file ./config/main.bicep \
-            --location "westus"
+      run: |
+        az deployment sub validate \
+          --name validate-${{ github.run_id }} \
+          --template-file ./config/main.bicep \
+          --location "westus"
 
     - name: Deploy Bicep file
       uses: azure/arm-deploy@v1
