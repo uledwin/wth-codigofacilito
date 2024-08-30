@@ -1,12 +1,12 @@
 name: Deployment-AR
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [workflow_dispatch]
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches:
+  #     - main
 
 jobs:
   deployment:
@@ -28,8 +28,20 @@ jobs:
         inlineScript: |
           az account show
 
+    - name: Bicep Validate
+      uses: Azure/cli@v1
+      with:
+        inlineScript: |
+          az deployment sub validate \
+            --name validate-${{ github.run_id }} \
+            --template-file ./config/main.bicep \
+            --location "westus"
 
-
-
-      - name: deploy
-
+    - name: Deploy Bicep file
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ vars.AZURE_RG }}
+        template: ./config/main.bicep
+        parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
+        failOnStdErr: false
