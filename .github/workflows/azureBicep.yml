@@ -29,12 +29,12 @@ jobs:
         inlineScript: |
           az account show
 
-    - name: Bicep Validate
-      run: |
-        az deployment sub validate \
-          --name validate-${{ github.run_id }} \
-          --template-file ./config/main.bicep \
-          --location "westus"
+   # - name: Bicep Validate
+    #  run: |
+    #    az deployment sub validate \
+    #      --name validate-${{ github.run_id }} \
+    #      --template-file ./config/main.bicep \
+    #      --location "westus"
 
     - name: Deploy Bicep file
       uses: azure/arm-deploy@v1
