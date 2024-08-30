@@ -11,7 +11,7 @@ const Index = ({ pets }) => {
     <>
       <div>
       {/* Insertar una imagen en la parte superior */}
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Perros-Bonitos-Acostados.jpg" alt="Mi Perro" /> 
+      <img src="https://raw.githubusercontent.com/uledwin/wth-codigofacilito/feauture/Adoption.jpg" alt="Mi Perro" /> 
       <br/>
 
       {/* TODO: Display Hours component */}
